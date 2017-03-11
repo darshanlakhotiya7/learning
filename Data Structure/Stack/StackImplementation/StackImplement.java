@@ -2,7 +2,7 @@
 public class StackImplement {
 
 	protected int stackarray[];
-	protected int size, top, len;
+	protected int size, top;
 
 	public StackImplement(int size) {
 		this.size = size;
