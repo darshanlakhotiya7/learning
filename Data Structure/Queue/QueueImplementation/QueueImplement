@@ -1,0 +1,51 @@
+
+public class QueueImplement {
+	protected int size, front, rear;
+	protected int queuearray[];
+
+	public QueueImplement(int size) {
+		this.size = size;
+		queuearray = new int[size];
+		front = rear = -1;
+	}
+
+	public boolean isFull() {
+		if (rear == size - 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void insert(int data) {
+		rear++;
+		queuearray[rear] = data;
+		if (rear == 0) {
+			front = 0;
+		}
+	}
+
+	public boolean isEmpty() {
+		if (front == -1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public int delete() {
+		int data = queuearray[front];
+		if (front == rear) {
+			front = rear = -1;
+		} else {
+			front = front + 1;
+		}
+		return data;
+	}
+
+	public void display() {
+		for (int i = front; i <= rear; i++) {
+			System.out.print(queuearray[i]);
+		}
+	}
+}
