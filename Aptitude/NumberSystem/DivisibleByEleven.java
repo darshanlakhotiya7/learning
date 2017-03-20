@@ -55,9 +55,9 @@ public class DivisibleByEleven {
 		}
 		if (flag == true) {
 			if ((sumodd - sumeven) % 11 == 0) {
-				System.out.println(given_string + " is divisible by 11");
+				System.out.println("Yes");
 			} else {
-				System.out.println(given_string + " is NOT divisible by 11");
+				System.out.println("No");
 			}
 		} else {
 			System.out.println("Illegel Input... Only digit is allowed");
