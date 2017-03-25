@@ -1,5 +1,4 @@
 import java.util.Stack;
-
 public class InfixToPostfix {
 
 	String infix_exp;
@@ -69,7 +68,8 @@ public class InfixToPostfix {
 			case '+':
 			case '-':
 				while (priority(st.peek()) <= priority(sym)) {
-
+					temp = st.pop();
+					postfix[pos++] = temp;
 				}
 				st.push(sym);
 				break;
@@ -89,11 +89,11 @@ public class InfixToPostfix {
 
 	private int priority(Character peek) {
 		if (peek == '^' || peek == '%') {
-			return 1;
+			return 3;
 		} else if (peek == '*' || peek == '/') {
 			return 2;
 		} else if (peek == '+' || peek == '-') {
-			return 4;
+			return 1;
 		} else {
 			return 0;
 		}
