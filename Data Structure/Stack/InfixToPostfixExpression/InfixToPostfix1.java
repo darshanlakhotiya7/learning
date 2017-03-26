@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class InfixToPostfix1 {
+public class InfixToPostfix {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -9,7 +9,7 @@ public class InfixToPostfix1 {
 			String infix_exp = sc.next();
 			if (isBalanced(infix_exp)) {
 				System.out.println("Postfix Expression is :"
-						+ InfixToPostfix1.convertPostfix(infix_exp));
+						+ InfixToPostfix.convertPostfix(infix_exp));
 			} else {
 				System.out
 						.println("Given Expression is not Balanced Expression");
@@ -26,6 +26,7 @@ public class InfixToPostfix1 {
 		char sym;
 		StringBuffer postfix = new StringBuffer();
 		Stack<Character> st = new Stack<Character>();
+		st.push('#');
 		for (i = 0; i < infix_exp.length(); i++) {
 			sym = infix_exp.charAt(i);
 			switch (sym) {
@@ -36,8 +37,6 @@ public class InfixToPostfix1 {
 				while (!st.isEmpty() && st.peek() != '(') {
 					postfix.append(st.pop());
 				}
-				if (!st.isEmpty() && st.peek() != '(')
-					return null;
 				break;
 			case '+':
 			case '-':
@@ -55,19 +54,21 @@ public class InfixToPostfix1 {
 				break;
 			}
 		}
-		while (!st.isEmpty() && st.peek() != '(') {
-			postfix.append(st.pop());
+		while (!st.isEmpty() && st.peek() != '#') {
+			char temp = st.pop();
+			if (temp != '(')
+				postfix.append(temp);
 		}
 		return postfix.toString();
 	}
 
 	private static int getPriority(char sym) {
 		if (sym == '^' || sym == '%')
-			return 1;
+			return 3;
 		else if (sym == '*' || sym == '/')
 			return 2;
 		else if (sym == '+' || sym == '-')
-			return 3;
+			return 1;
 		else
 			return -1;
 	}
