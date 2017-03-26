@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -39,9 +38,6 @@ public class InfixToPostfix1 {
 				}
 				if (!st.isEmpty() && st.peek() != '(')
 					return null;
-				else if (!st.isEmpty()) {
-					st.pop();
-				}
 				break;
 			case '+':
 			case '-':
@@ -59,7 +55,7 @@ public class InfixToPostfix1 {
 				break;
 			}
 		}
-		while (!st.isEmpty()) {
+		while (!st.isEmpty() && st.peek() != '(') {
 			postfix.append(st.pop());
 		}
 		return postfix.toString();
